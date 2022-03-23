@@ -1,16 +1,13 @@
 import React from 'react'
 import useSessionStorage from '../hooks/useSessionStorage'
 import Login from './Login'
+import Dashboard from './Dashboard'
 
 const App = () => {
-  const [Id, setId] = useSessionStorage('id')
+  const [id, setId] = useSessionStorage('id')
 
   return (
-    <>
-      {Id}
-      <Login onIdSubmit={setId}/>
-    </>
-    
+      id? <Dashboard id={id} /> : <Login onIdSubmit={setId}/>
   )
 }
 
