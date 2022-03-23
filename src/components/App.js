@@ -1,8 +1,9 @@
-import React, { useState} from 'react'
+import React from 'react'
+import useSessionStorage from '../hooks/useSessionStorage'
 import Login from './Login'
 
 const App = () => {
-  const [Id, setId] = useState()
+  const [Id, setId] = useSessionStorage('id')
 
   return (
     <>
