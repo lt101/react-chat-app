@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState} from 'react'
 import Login from './Login'
 
 const App = () => {
+  const [Id, setId] = useState()
+
   return (
-    <Login />
+    <>
+      {Id}
+      <Login onIdSubmit={setId}/>
+    </>
+    
   )
 }
 
