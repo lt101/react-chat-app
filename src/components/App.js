@@ -10,7 +10,6 @@ function App() {
     <>
       {user? <MainMenu user={user} /> : <Login onUserSubmit={setUser} />}
     </>
-    
   )
 }
 
