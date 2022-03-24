@@ -1,31 +1,30 @@
 import React, { useRef } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Container, Form, Button } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
 
-const Login = ({ onIdSubmit }) => {
-    const idRef = useRef()
+export default function Login({ onUserSubmit }) {
+  const userNameRef = useRef()
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        onIdSubmit(idRef.current.value);
-    }
+  function handleSubmit(e) {
+    e.preventDefault()
 
-    function generateId() {
-        onIdSubmit(uuidV4());
-    }
+    onUserSubmit(userNameRef.current.value)
+  }
 
-    return (
-        <Container className="align-items-center d-flex" style={{ height: '100vh'}}>
-            <Form onSubmit={handleSubmit} className='w-50'>
-                <Form.Group>
-                    <Form.Label>Enter your ID</Form.Label>
-                    <Form.Control type="text" ref={idRef} required></Form.Control>
-                </Form.Group>
-                <Button type="submit" className="me-2">Login</Button>
-                <Button onClick={generateId} variant='secondary'>Create new ID</Button>
-            </Form>
-        </Container>
-    )
+  function createNewId() {
+    onUserSubmit(uuidV4())
+  }
+
+  return (
+    <Container className="align-items-center d-flex" style={{ height: '100vh' }}>
+      <Form onSubmit={handleSubmit} className="w-100">
+        <Form.Group>
+          <Form.Label>Enter Your Username</Form.Label>
+          <Form.Control type="text" ref={userNameRef} required />
+        </Form.Group>   
+        <Button type="submit" className="me-2">Login</Button>
+        <Button onClick={createNewId} variant="secondary">Create A Random Username</Button>
+      </Form>
+    </Container>
+  )
 }
-
-export default Login

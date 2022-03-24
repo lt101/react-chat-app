@@ -1,20 +1,16 @@
 import React from 'react'
-import useSessionStorage from '../hooks/useSessionStorage'
 import Login from './Login'
-import Dashboard from './Dashboard'
-import { ContactsProvider } from '../contexts/ContactsProvider'
+import MainMenu from './MainMenu'
+import useSessionStorage from '../hooks/useSessionStorage'
 
-const App = () => {
-  const [id, setId] = useSessionStorage('id')
-
-  const dashboard = (
-    <ContactsProvider>
-      <Dashboard id={id} />
-    </ContactsProvider>
-  )
+function App() {
+    const [user, setUser] = useSessionStorage('user')
 
   return (
-      id? dashboard : <Login onIdSubmit={setId}/>
+    <>
+      {user? <MainMenu user={user} /> : <Login onUserSubmit={setUser} />}
+    </>
+    
   )
 }
 
