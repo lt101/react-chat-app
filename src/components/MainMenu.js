@@ -1,15 +1,21 @@
-import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import React, { useState } from 'react'
+import Chat from './Chat'
+import Rooms from './Rooms'
+import { RoomContext } from '../contexts/RoomContext'
 
 function MainMenu({ user }) {
+
+    
+  const [selectedRoom, setselectedRoom] = useState()
+
   return (
-      <>
-        <div>Welcome {user}!</div>
-        <ListGroup>
-            <ListGroup.Item>item 1</ListGroup.Item>
-            <ListGroup.Item>item 2</ListGroup.Item>
-        </ListGroup>
-      </>
+      <div className="d-flex" style={{height: '100vh'}}>
+        <RoomContext.Provider value={{ selectedRoom, setselectedRoom }}>
+          <Rooms user={user}/>
+          <Chat />
+        </RoomContext.Provider>
+
+      </div>
   )
 
 }
