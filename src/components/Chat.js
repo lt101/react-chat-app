@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
-import { RoomContext } from '../contexts/RoomContext'
+import { RoomsContext } from '../contexts/RoomsContext'
 
 function Chat() {
 
-    const {selectedRoom} = useContext(RoomContext)
+    const {selectedRoom} = useContext(RoomsContext)
     const [text, setText] = useState('')
 
     function handleSubmit(e) {
