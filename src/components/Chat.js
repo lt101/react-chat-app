@@ -20,7 +20,6 @@ function Chat() {
                     <InputGroup>
                         <Form.Control
                             as="textarea"
-                            required
                             value={text}
                             onChange={e => setText(e.target.value)}
                             style={{ height: '75px', resize: 'none' }}
