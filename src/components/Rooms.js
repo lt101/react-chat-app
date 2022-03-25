@@ -8,12 +8,12 @@ function Rooms({user}) {
     const COZY_ROOM = "cozy room"
     const NICE_ROOM = "nice room"
 
-    const {selectedRoom, setselectedRoom} = useContext(RoomContext)
+    const {setselectedRoom} = useContext(RoomContext)
 
     return (
         <div style={{ width: '25%' }} className="d-flex flex-column">
             <div className="border border-right overflow-auto">Welcome {user}! Choose a room: </div>
-                <ListGroup selectedRoom={selectedRoom} onSelect={setselectedRoom}>
+                <ListGroup onSelect={setselectedRoom}>
                     <ListGroup.Item eventKey={COOL_ROOM}>Cool room</ListGroup.Item>
                     <ListGroup.Item eventKey={COZY_ROOM}>Cozy room</ListGroup.Item>
                     <ListGroup.Item eventKey={NICE_ROOM}>Nice room</ListGroup.Item>
