@@ -3,11 +3,10 @@ import Chat from './Chat'
 import Rooms from './Rooms'
 import { RoomsContext } from '../contexts/RoomsContext'
 import { MessagesContext } from '../contexts/MessagesContext'
-import { io } from 'socket.io-client'
 
-function MainMenu({ user }) {
 
-  const socket = io('http://localhost:5000')
+function MainMenu({ user, socket }) {
+
     
   const [selectedRoom, setselectedRoom] = useState('')
   const [messages, setMessages] = useState([])
@@ -17,7 +16,7 @@ function MainMenu({ user }) {
         <RoomsContext.Provider value={{ selectedRoom, setselectedRoom }}>
           <MessagesContext.Provider value={{ messages, setMessages }}>
             <Rooms socket={socket} user={user}/>
-            <Chat />
+            <Chat socket={socket}/>
           </MessagesContext.Provider>
 
         </RoomsContext.Provider>

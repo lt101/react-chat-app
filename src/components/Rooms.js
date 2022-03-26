@@ -11,7 +11,7 @@ function Rooms({ socket, user }) {
     const {setselectedRoom} = useContext(RoomsContext)
 
     function handleSelect(room){
-        //socket.emit('join-room', room)
+        socket.emit('join-room', room)
         //setselectedRoom(room)
     }
 

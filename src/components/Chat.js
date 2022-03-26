@@ -1,15 +1,25 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import { RoomsContext } from '../contexts/RoomsContext'
 
-function Chat() {
+function Chat({ socket }) {
 
     const {selectedRoom} = useContext(RoomsContext)
     const [text, setText] = useState('')
+    const testRoom = 'cool room'
 
     function handleSubmit(e) {
-
+        e.preventDefault()
+        socket.emit('send-message', {text, testRoom})
+        console.log({text, testRoom})
+        setText('')
     }
+
+    useEffect(() => {
+        socket.on('receive-message', message => {
+            console.log(`received something: ${message}`)
+        })
+    })
 
     return (
         <div style={{ width: '75%' }} className="d-flex flex-column flex-grow-1"> 
