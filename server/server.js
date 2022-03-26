@@ -22,6 +22,7 @@ io.on('connection', socket => {
 
     socket.on('send-message', (messageInfo) => {
         socket.to(messageInfo.room).emit('receive-message', messageInfo)
+        socket.emit('receive-message', messageInfo)
         console.log(`${JSON.stringify(messageInfo)} has been sent from server to room ${messageInfo.room}`)
     })
 

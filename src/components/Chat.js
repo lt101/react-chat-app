@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import { useSocket } from '../contexts/SocketContext'
 
 function Chat({ room }) {
 
     const [text, setText] = useState('')
+    const [messageList, setMessageList] = useState([])
+
+    const setRef = useCallback(node => {
+        if (node) {
+          node.scrollIntoView({ smooth: true })
+        }
+      }, [])
+
     const socket = useSocket()
 
     async function handleSubmit(e) {
@@ -12,25 +20,49 @@ function Chat({ room }) {
 
         if(text !== '') {
             const messageInfo = {
+                from: socket.id,
                 text : text,
                 room: room,
                 time: new Date(Date.now()).getHours() + new Date(Date.now()).getMinutes()
             }
             await socket.emit('send-message', messageInfo)
+            setText('')
         }
-        setText('')
     }
 
     useEffect(() => {
-        socket.on('receive-message', message => {
-            console.log(`received something: ${JSON.stringify(message)}`)
+        socket.on('receive-message', newMessage => {
+            console.log(`received something: ${JSON.stringify(newMessage)}`)
+            setMessageList(messageList => [...messageList, newMessage])
         })
     }, [socket])
 
     return (
         <div style={{ width: '75%' }} className="d-flex flex-column flex-grow-1"> 
             <div>Showing chat from {room}</div>
-            <div className="border border-left overflow-auto flex-grow-1"></div>
+            <div className="border border-left overflow-auto flex-grow-1">
+                <div className="d-flex flex-column align-items-start justify-content-end px-3">
+                    {Object.values(messageList).map((messageInfo, index) => {
+                        const lastMessage = messageList.length - 1 === index
+                        return (
+                          <div
+                            ref={lastMessage ? setRef : null}
+                            key={index}
+                            className={`my-1 d-flex flex-column 
+                            ${messageInfo.from === socket.id ? 'align-self-end align-items-end' : 'align-items-start'}`}
+                          >
+                            <div
+                              className={`rounded px-2 py-1 ${messageInfo.from === socket.id ? 'bg-primary text-white' : 'border'}`}>
+                              {messageInfo.text}
+                            </div>
+                            <div className={`text-muted small ${messageInfo.from === socket.id ? 'text-right' : ''}`}>
+                              {messageInfo.from === socket.id ? 'You' : messageInfo.from}
+                            </div>
+                          </div>
+                        )
+                    })}
+                </div>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-1">
                     <InputGroup>
