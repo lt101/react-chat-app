@@ -8,7 +8,7 @@ function MainMenu({ user, room }) {
   return (
       <div className="d-flex" style={{height: '100vh'}}>
             <Rooms user={user} room={room}/>
-            <Chat room={room}/>
+            <Chat user={user} room={room}/>
       </div>
   )
 

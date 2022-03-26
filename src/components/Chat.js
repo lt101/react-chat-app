@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import { useSocket } from '../contexts/SocketContext'
 
-function Chat({ room }) {
+function Chat({ user, room }) {
 
     const [text, setText] = useState('')
     const [messageList, setMessageList] = useState([])
@@ -20,7 +20,7 @@ function Chat({ room }) {
 
         if(text !== '') {
             const messageInfo = {
-                from: socket.id,
+                from: user,
                 text : text,
                 room: room,
                 time: new Date(Date.now()).getHours() + new Date(Date.now()).getMinutes()
@@ -49,14 +49,14 @@ function Chat({ room }) {
                             ref={lastMessage ? setRef : null}
                             key={index}
                             className={`my-1 d-flex flex-column 
-                            ${messageInfo.from === socket.id ? 'align-self-end align-items-end' : 'align-items-start'}`}
+                            ${messageInfo.from === user ? 'align-self-end align-items-end' : 'align-items-start'}`}
                           >
                             <div
-                              className={`rounded px-2 py-1 ${messageInfo.from === socket.id ? 'bg-primary text-white' : 'border'}`}>
+                              className={`rounded px-2 py-1 ${messageInfo.from === user ? 'bg-primary text-white' : 'border'}`}>
                               {messageInfo.text}
                             </div>
-                            <div className={`text-muted small ${messageInfo.from === socket.id ? 'text-right' : ''}`}>
-                              {messageInfo.from === socket.id ? 'You' : messageInfo.from}
+                            <div className={`text-muted small ${messageInfo.from === user ? 'text-right' : ''}`}>
+                              {messageInfo.from === user ? 'You' : messageInfo.from}
                             </div>
                           </div>
                         )
