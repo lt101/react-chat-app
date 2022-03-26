@@ -15,12 +15,14 @@ function App() {
   const [room, setRoom] = useState('')
 
   function joinRoom() {
-    
+
   }
 
   return (
     <>
-      {user? <MainMenu user={user} socket={socket} /> : <Login onUserSubmit={setUser} />}
+      {user && room ? <MainMenu user={user} socket={socket} /> : 
+      <Login setUser={setUser} setRoom={setRoom}>
+      </Login>}
     </>
   )
 }
