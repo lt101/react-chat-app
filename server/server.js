@@ -12,12 +12,42 @@ const io = socketio(server, {
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+let connectedUsers = []
+
+function getUser(socketId) {
+    connectedUsers.forEach((user) => {
+        if(user.socket === socketId) return user
+    })
+    return null
+}
+
+function addToUsers(socketId, loginInfo) {
+    connectedUsers.push({   
+        socket: socketId,
+        username: loginInfo.userName, 
+        room: loginInfo.room
+    })
+} 
+
+function findRoomUsers(room) {
+    let usersOfRoom = []
+    connectedUsers.forEach((user) => {
+        if(user.room === room) {
+            usersOfRoom.push(user.username)
+        }
+    })
+    return usersOfRoom
+}
+
 io.on('connection', socket => {
     console.log(`new connection from client: ${socket.id}`);
 
-    socket.on('join-room', newRoom => {
-        socket.join(newRoom)
-        console.log(`${socket.id} has joined ${newRoom}`)
+    socket.on('join-room', loginInfo => {
+        addToUsers(socket.id, loginInfo)
+        const usersOfRoom = findRoomUsers(loginInfo.room)
+        socket.join(loginInfo.room)
+        socket.to(loginInfo.room).emit('update-rooms', usersOfRoom)
+        socket.emit('update-rooms', usersOfRoom)
     })
 
     socket.on('send-message', (messageInfo) => {
