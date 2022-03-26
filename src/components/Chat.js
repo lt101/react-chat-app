@@ -23,7 +23,7 @@ function Chat({ user, room }) {
                 from: user,
                 text : text,
                 room: room,
-                time: new Date(Date.now()).getHours() + new Date(Date.now()).getMinutes()
+                time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
             }
             await socket.emit('send-message', messageInfo)
             setText('')
@@ -52,11 +52,11 @@ function Chat({ user, room }) {
                             ${messageInfo.from === user ? 'align-self-end align-items-end' : 'align-items-start'}`}
                           >
                             <div
-                              className={`rounded px-2 py-1 ${messageInfo.from === user ? 'bg-primary text-white' : 'border'}`}>
+                              className={`rounded px-2 py-1 ${messageInfo.from === user ? 'bg-primary text-white' : 'bg-info text-white border'}`}>
                               {messageInfo.text}
                             </div>
                             <div className={`text-muted small ${messageInfo.from === user ? 'text-right' : ''}`}>
-                              {messageInfo.from === user ? 'You' : messageInfo.from}
+                              {messageInfo.from === user ? `You, ${messageInfo.time}` : `${messageInfo.from}, ${messageInfo.time}`}
                             </div>
                           </div>
                         )
