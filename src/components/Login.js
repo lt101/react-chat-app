@@ -1,16 +1,19 @@
 import React, { useRef } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
+import { useSocket } from '../contexts/SocketContext'
 
 export default function Login({ setUser, setRoom }) {
   const userNameRef = useRef()
   const roomRef = useRef()
+  const socket = useSocket()
 
   function handleSubmit(e) {
     e.preventDefault()
 
     setUser(userNameRef.current.value)
     setRoom(roomRef.current.value)
+    socket.emit('join-room', roomRef.current.value)
   }
 
   function createNewId() {
