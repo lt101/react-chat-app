@@ -6,6 +6,8 @@ This is a basic chat application using React and Socket.io. Users log in with a 
 The application is made for a local environnement (see Client and Server sections) and has no data persistance. 
 
 ## How To Use
+Before running the application, run the `npm ci` script in the terminal in the project directory to install necessary dependencies.
+
 To run the client, run the `npm start` script in the terminal in the project directory. The client will run on **http://localhost:3000/**
 
 To run the server, run the `npm run dev` script in the terminal in the 
