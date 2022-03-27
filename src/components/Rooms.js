@@ -15,10 +15,10 @@ function Rooms({ user, room }) {
     }, [socket])
 
     return (
-        <div style={{ width: '25%' }} className="d-flex flex-column bg-info text-white">
+        <div style={{ width: '25%' }} className="d-flex flex-column text-black text-white">
             <div className="border border-right overflow-auto bg-secondary">Welcome {user}! Your are in room {room} </div>
-                <ListGroup variant='flush'>
-                    Active Users:
+                <ListGroup>
+                    <div className="text-black">Active Users:</div>
                     {userList.map((userName, index) => {
                         return (
                         <ListGroup.Item key={index}>
