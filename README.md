@@ -1,11 +1,12 @@
-## Available Scripts
+# React Chat App
 
-In the project directory, you can run:
+## About
+This is a basic chat application using React and Socket.io. Users log in with a username and join a room. Users of a same room see the other participants can send each other messages.
 
-### `npm start`
+The application is made for a local environnement (see Client and Server sections) and has no data persistance. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Client
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+
+
+## Server
