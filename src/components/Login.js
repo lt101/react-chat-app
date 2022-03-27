@@ -27,8 +27,9 @@ export default function Login({ setUser, setRoom }) {
 
 
   return (
-    <Container className="align-items-center d-flex bg-light" style={{ height: '100vh' }}>
+    <Container fluid className="align-items-center d-flex bg-light" style={{ height: '100vh' }}>
       <Col md={{ span: 6, offset: 3}}>
+        <h1 className="p-4">React Chat App Demo</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Enter Your Username</Form.Label>
