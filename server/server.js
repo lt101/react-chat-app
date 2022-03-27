@@ -14,13 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let connectedUsers = []
 
-function getUser(socketId) {
-    connectedUsers.forEach((user) => {
-        if(user.socket === socketId) return user
-    })
-    return null
-}
-
 function addToUsers(socketId, loginInfo) {
     connectedUsers.push({   
         socket: socketId,
