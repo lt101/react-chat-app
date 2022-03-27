@@ -27,7 +27,7 @@ export default function Login({ setUser, setRoom }) {
 
 
   return (
-    <Container className="align-items-center d-flex" style={{ height: '100vh' }}>
+    <Container className="align-items-center d-flex bg-light" style={{ height: '100vh' }}>
       <Col md={{ span: 6, offset: 3}}>
         <Form onSubmit={handleSubmit}>
           <Form.Group>

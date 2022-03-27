@@ -38,7 +38,7 @@ function Chat({ user, room }) {
     }, [socket])
 
     return (
-        <div style={{ width: '75%' }} className="d-flex flex-column flex-grow-1"> 
+        <div style={{ width: '75%' }} className="d-flex flex-column flex-grow-1 bg-light"> 
             <div>Showing chat from {room}</div>
             <div className="border border-left overflow-auto flex-grow-1">
                 <div className="d-flex flex-column align-items-start justify-content-end px-3">
