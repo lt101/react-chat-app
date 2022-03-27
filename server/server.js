@@ -30,8 +30,6 @@ function findRoomUsers(room) {
 }
 
 io.on('connection', socket => {
-    console.log(`new connection from client: ${socket.id}`);
-
     socket.on('join-room', loginInfo => {
         addToUsers(socket.id, loginInfo)
         const usersOfRoom = findRoomUsers(loginInfo.room)
@@ -46,7 +44,6 @@ io.on('connection', socket => {
     })
 
     socket.on("disconnect", () => {
-        console.log(`Client ${socket.id} disconnected`)
     })
 });
 

@@ -32,7 +32,6 @@ function Chat({ user, room }) {
 
     useEffect(() => {
         socket.on('receive-message', newMessage => {
-            console.log(`received something: ${JSON.stringify(newMessage)}`)
             setMessageList(messageList => [...messageList, newMessage])
         })
     }, [socket])
