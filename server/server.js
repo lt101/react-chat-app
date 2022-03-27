@@ -1,4 +1,3 @@
-const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
@@ -8,8 +7,6 @@ const server = http.createServer(app);
 const io = socketio(server, {
     cors: {origin: "http://localhost:3000"}
 });
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 let connectedUsers = []
