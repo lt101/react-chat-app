@@ -15,6 +15,11 @@ function Chat({ user, room }) {
 
     const socket = useSocket()
 
+    async function sendOnEnter(e) {
+        console.log(e.charCode)
+        if(e.charCode === 13) handleSubmit(e)
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
 
@@ -70,6 +75,7 @@ function Chat({ user, room }) {
                             value={text}
                             onChange={e => setText(e.target.value)}
                             style={{ height: '75px', resize: 'none' }}
+                            onKeyPress={sendOnEnter}
                         />     
                         <Button type="submit">Send</Button>
                     </InputGroup>
