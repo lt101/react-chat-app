@@ -16,7 +16,8 @@ function Rooms({ user, room }) {
 
     return (
         <div style={{ width: '25%' }} className="d-flex flex-column text-black text-white">
-            <div className="border border-right overflow-auto bg-secondary">Welcome {user}! Your are in room {room} </div>
+            <div className="border border-right overflow-auto bg-secondary">Welcome {user}!</div>
+            <div className="border border-right overflow-auto bg-secondary">Your are in room: {room} </div>
                 <ListGroup>
                     <div className="text-black">Active Users:</div>
                     {userList.map((userName, index) => {
