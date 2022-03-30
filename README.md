@@ -5,7 +5,7 @@ This is a basic chat application using React and Socket.io. Users log in with a 
 
 The application is made for a local environnement (see Client and Server sections) and has no data persistance. 
 
-![chat app screenshot](https://github.com/lt101/react-chat-app/blob/main/react%20chat%20picture.PNG)
+![chat app screenshot](https://github.com/lt101/react-chat-app/blob/main/chat%20app%20screenshot.PNG)
 
 ## How To Use
 Before running the application, run the `npm ci` script in the terminal in the project directory to install necessary dependencies.
